@@ -1,0 +1,45 @@
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+
+:root {
+  --verde_oscuro: #006414;
+  --verde: #009929;
+  --verde_claro: #5ccb5f;
+  --rojo: #e80729;
+  --rojo_claro: #ef2947;
+  --amarillo: #efa229;
+  --amarillo_claro: #f3b24a;
+}
+
+.grid-navbar {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main main main';
+  gap: 10px;
+  background-color: var(--verde);
+  padding: 10px;
+}
+
+.grid-navbar > div {
+  background-color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+/* .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 20%;
+}
+
+.grid-item{
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+} */
