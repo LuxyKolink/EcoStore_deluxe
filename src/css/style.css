@@ -50,7 +50,7 @@ html {
   place-items: center;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  background-color: var(--verde);
+  background-color: white;
   gap: 2rem 1rem;
   padding: 1rem .5rem;
   margin: 2rem;
@@ -60,11 +60,18 @@ html {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   width: 250px;
   height: 300px;
   border-radius: 10px;
+}
+
+.grid-main-item > img {
+  float: center; 
+  width: 100px;
+  height: 100px;
+  margin-right: 1em;
 }
 
 .grid-main-item:hover {
