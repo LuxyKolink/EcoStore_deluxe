@@ -13,12 +13,72 @@
 <body>
 
   <div class="grid-layout">
-    <div class="item1">Header</div>
-    <div class="item2">Menu</div>
+    <div class="item1">
+
+      <div id="flex-header">
+
+        <div class="box-logo"><img src="./src/images/logo.jpg" alt=""></div>       
+          <div class="box-navbar">
+            <div class="box-navbar-search">
+              <input type="text" name="" id="" placeholder="¿Qué producto estás buscando...?">
+            </div>
+            <div class="box-navbar-btn">
+              <button type="submit"><img src="./src/images/icons/search-icon.png" /></button>
+            </div>
+          </div>
+        <div class="box-icons"><img src="./src/images/icons/heart-thin-icon.png" alt=""></div>
+        <div class="box-icons"><img src="./src/images/icons/user-profile-icon.png" alt=""></div>
+        <div class="box-icons"><img src="./src/images/icons/shopping-cart-icon.png" alt=""></div>
+
+      </div>
+
+    </div>
+    <div class="item2">
+
+      <div id="flex-filter">
+
+        <div class="filter">
+
+          <div class="filter-tittle">Precio</div>
+          <div class="filter-tittle-btn"><img src="./src/images/icons/close-round-line-icon.png" alt=""></div>
+
+        </div>
+        <div class="filter-range">
+
+          <div class="filter-range-slider">
+            <span class="filter-range-selected"></span>
+          </div>
+
+          <div class="filter-range-input">
+
+            <input type="range" class="min" min="0" max="1000" value="300" step="10">
+            <input type="range" class="max" min="0" max="1000" value="700" step="10">
+
+          </div>
+
+          <div class="range-price">
+
+            <label for="min">Min</label>
+            <input type="number" name="min" value="300">      
+            <label for="max">Max</label>
+            <input type="number" name="max" value="700">  
+
+          </div>
+
+        </div>
+        <div class="filter-btn">
+
+          <button class="">
+            <span>Filtrar</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
     <div id="grid-main-container" class="item3 grid-main-container"></div>
   </div>
-
-  <script src="./src/js/app.js"></script>
 
 </body>
 
