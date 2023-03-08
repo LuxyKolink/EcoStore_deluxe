@@ -1,75 +1,140 @@
 import products from "../data/products.js";
 
-function createObjectList(arr) {
-  const objectList = [];
-
-  // Añadir objetos al arreglo hasta que la longitud sea divisible por 12
-  while (arr.length % 12 !== 0) {
-    arr.push(null);
-  }
-
-  // Dividir el arreglo en sublistas de 12 elementos cada una
-  const sublists = [];
-  while (arr.length > 0) {
-    sublists.push(arr.splice(0, 12));
-  }
-
-  // Convertir cada sublista de objetos en una lista de valores
-  const objectLists = sublists.map(sublist => {
-    const list = [];
-    for (let i = 0; i < 12; i++) {
-      const obj = sublist[i];
-      if (obj) {
-        list.push([obj.id, obj.title, obj.amount, obj.price]);
-      } else {
-        list.push(null);
-      }
-    }
-    return list;
-  });
-
-  objectList.push(...objectLists);
-
-  return objectList;
-}
-
 
 // let body = document.body;
 
-window.onload = function getProducts() {
-  let allProducts = products();
-  var Paginador = createObjectList(allProducts)
-  console.log(Paginador)
-  // Crear contenedor de todos los productos
-  let productsContainer = document.getElementById("grid-main-container");
-  //productsContainer.classList.add("grid-container");
+// --------------------------------------- grilla de productos ----------------------------------- //
 
-  // Por cada producto, crear un div y agregarlo al container
-  Paginador[0].forEach((product) => {
-    let img = document.createElement('img');
-    img.src = `../images/products/${product.id}.jpg`
+let allProducts = products;
+// Crear contenedor de todos los productos
+let productsContainer = document.getElementById("grid-main-container");
+//productsContainer.classList.add("grid-container");
 
-    console.log(`${product.id}:${product.title}: ${product.amount}: ${product.price}: ${product.img}`);
-    let productCard = document.createElement("div");
-    productCard.classList.add("grid-main-item");
-    let imgEl = document.createElement("img");
-    imgEl.src = `./src/images/products/${product.id}.jpg`
-    productCard.appendChild(imgEl);
-    let titleEl = document.createElement("p");
-    titleEl.innerHTML = product.title;
-    productCard.appendChild(titleEl);
-    let amountEl = document.createElement("p");
-    amountEl.innerHTML = product.amount;
-    productCard.appendChild(amountEl);
-    let priceEl = document.createElement("p");
-    priceEl.innerHTML = product.price + '$';
-    productCard.appendChild(priceEl);
-    productsContainer.appendChild(productCard);
+// Por cada producto, crear un div y agregarlo al container
+allProducts.forEach((product) => {
+
+  console.log(`${product.id}:${product.title}: ${product.amount}: ${product.price}: ${product.img}`);
+  let productCard = document.createElement("div");
+  productCard.classList.add("grid-main-item");
+  let imgEl = document.createElement("img");
+  imgEl.src = `./src/images/products/${product.id}.jpg`
+  productCard.appendChild(imgEl);
+  let titleEl = document.createElement("p");
+  titleEl.innerHTML = product.title;
+  productCard.appendChild(titleEl);
+  let amountEl = document.createElement("p");
+  amountEl.innerHTML = product.amount;
+  productCard.appendChild(amountEl);
+  let priceEl = document.createElement("p");
+  priceEl.innerHTML = product.price + '$';
+  productCard.appendChild(priceEl);
+  productsContainer.appendChild(productCard);
+});
+
+// body.appendChild(productsContainer);
+
+
+// --------------------------------------- paginador ----------------------------------- //
+
+const paginationNumbers = document.getElementById("pagination-numbers");
+const paginatedList = document.getElementById("grid-main-container");
+const listItems = paginatedList.querySelectorAll("div");
+const nextButton = document.getElementById("next-button");
+const prevButton = document.getElementById("prev-button");
+
+const paginationLimit = 12;
+const pageCount = Math.ceil(listItems.length / paginationLimit);
+let currentPage = 1;
+
+const disableButton = (button) => {
+button.classList.add("disabled");
+button.setAttribute("disabled", true);
+};
+
+const enableButton = (button) => {
+button.classList.remove("disabled");
+button.removeAttribute("disabled");
+};
+
+const handlePageButtonsStatus = () => {
+  if (currentPage === 1) {
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+
+  if (pageCount === currentPage) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+};
+
+const handleActivePageNumber = () => {
+  document.querySelectorAll(".pagination-number").forEach((button) => {
+    button.classList.remove("active");
+    const pageIndex = Number(button.getAttribute("page-index"));
+    if (pageIndex == currentPage) {
+      button.classList.add("active");
+    }
+  });
+};
+
+const appendPageNumber = (index) => {
+  const pageNumber = document.createElement("button");
+  pageNumber.className = "pagination-number";
+  pageNumber.innerHTML = index;
+  pageNumber.setAttribute("page-index", index);
+  pageNumber.setAttribute("aria-label", "Page " + index);
+
+  paginationNumbers.appendChild(pageNumber);
+};
+
+const getPaginationNumbers = () => {
+  for (let i = 1; i <= pageCount; i++) {
+    appendPageNumber(i);
+  }
+};
+
+const setCurrentPage = (pageNum) => {
+  currentPage = pageNum;
+
+  handleActivePageNumber();
+  handlePageButtonsStatus();
+
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+
+  listItems.forEach((item, index) => {
+    item.classList.add("hidden");
+    if (index >= prevRange && index < currRange) {
+      item.classList.remove("hidden");
+    }
+  });
+};
+
+window.addEventListener("load", () => {
+  getPaginationNumbers();
+  setCurrentPage(1);
+
+  prevButton.addEventListener("click", () => {
+    setCurrentPage(currentPage - 1);
   });
 
-  // body.appendChild(productsContainer);
+  nextButton.addEventListener("click", () => {
+    setCurrentPage(currentPage + 1);
+  });
 
-};
+  document.querySelectorAll(".pagination-number").forEach((button) => {
+    const pageIndex = Number(button.getAttribute("page-index"));
+
+    if (pageIndex) {
+      button.addEventListener("click", () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
+});
 
 // --------------------------------------- filtro ----------------------------------- //
 

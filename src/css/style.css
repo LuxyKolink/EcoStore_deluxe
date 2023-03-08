@@ -18,6 +18,10 @@ html {
   grid-area: main;
 }
 
+.item4 {
+  grid-area: footer;
+}
+
 /* ------------------------ header -------------------------------*/
 
 #flex-header {
@@ -188,7 +192,44 @@ flex-grow: 5;
 
 }
 
+/* ------------------------ paginator -------------------------------*/
 
+.hidden {
+  display: none;
+}
+
+.pagination-container {
+  width: calc(100% - 2rem);
+  display: flex;
+  align-items: center;
+  position: absolute;
+  padding: 1rem 0;
+  justify-content: right;
+}
+
+.pagination-number,
+.pagination-button{
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  margin: 0.25rem 0.25rem;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: .2rem;
+}
+
+.pagination-number:hover,
+.pagination-button:not(.disabled):hover {
+  background: #fff;
+}
+
+.pagination-number.active {
+  color: #fff;
+  background: #0085b6;
+}
+
+/* ------------------------ grid -------------------------------*/
 
 :root {
   --verde_oscuro: #006414;
@@ -204,7 +245,8 @@ flex-grow: 5;
   display: grid;
   grid-template-areas:
     'header header header header header header'
-    'menu main main main main main';
+    'menu main main main main main'
+    'footer footer footer footer footer footer';
   gap: 10px;
   background-color: var(--verde);
   padding: 1px;
@@ -217,6 +259,7 @@ flex-grow: 5;
   font-size: 30px;
 }
 
+/* ------------------------ grid products -------------------------------*/
 
 .grid-main-container {
   display: grid;
