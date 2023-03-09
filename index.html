@@ -17,17 +17,58 @@
 
       <div id="flex-header">
 
-        <div class="box-logo"><img src="./src/images/logo.jpg" alt=""></div>       
-          <div class="box-navbar">
-            <div class="box-navbar-search">
-              <input type="text" name="" id="" placeholder="¿Qué producto estás buscando...?">
-            </div>
-            <div class="box-navbar-btn">
-              <button type="submit"><img src="./src/images/icons/search-icon.png" /></button>
-            </div>
+        <div class="box-logo"><img src="./src/images/logo.jpg" alt=""></div>
+        <div class="box-navbar">
+          <div class="box-navbar-search">
+            <input type="text" name="" id="" placeholder="¿Qué producto estás buscando...?">
           </div>
+          <div class="box-navbar-btn">
+            <button type="submit"><img src="./src/images/icons/search-icon.png" /></button>
+          </div>
+        </div>
         <div class="box-icons"><img src="./src/images/icons/heart-thin-icon.png" alt=""></div>
-        <div class="box-icons"><img src="./src/images/icons/user-profile-icon.png" alt=""></div>
+
+        <div class="box-icons">
+          <button id="show-login"><img src="./src/images/icons/user-profile-icon.png" alt=""></button>
+        </div>
+        <div class="popup">
+
+          <div class="close-btn">&times;</div>
+          <div class="form">
+            <h2>Log in</h2>
+            <div class="form-element">
+
+              <label for="email">Email</label>
+              <input type="text" name="" id="email" placeholder="Enter email">
+
+            </div>
+
+            <div class="form-element">
+
+              <label for="psw">Password</label>
+              <input type="password" name="" id="password" placeholder="Enter password">
+
+            </div>
+
+            <div class="form-element">
+
+              <input type="checkbox" name="" id="remember-me">
+              <label for="remember-me">Remember me</label>
+
+            </div>
+
+            <div class="form-element">
+              <button>Sign in</button>
+            </div>
+
+            <div class="form-element">
+              <a href="#">Forgot password?</a>
+            </div>
+
+          </div>
+
+        </div>
+
         <div class="box-icons"><img src="./src/images/icons/shopping-cart-icon.png" alt=""></div>
 
       </div>
@@ -59,9 +100,9 @@
           <div class="range-price">
 
             <label for="min">Min</label>
-            <input type="number" name="min" value="300">      
+            <input type="number" name="min" value="300">
             <label for="max">Max</label>
-            <input type="number" name="max" value="700">  
+            <input type="number" name="max" value="700">
 
           </div>
 
@@ -85,11 +126,11 @@
         <button class="pagination-button" id="prev-button" aria-label="Previous page" title="Previous page">
           &lt;
         </button>
-    
+
         <div id="pagination-numbers">
-    
+
         </div>
-    
+
         <button class="pagination-button" id="next-button" aria-label="Next page" title="Next page">
           &gt;
         </button>
